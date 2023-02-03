@@ -27,12 +27,12 @@ const Product = ({ product }) => {
 
   };
   return (
-    <div className="relative w-72 h-[360px]">
+    <div className="relative w-72 h-[360px] rounded-xl overflow-hidden">
       <img src={url[0]} alt="" className="h-full object-cover" />
       <button
         className={`${
-          isInCart ? "bg-red-500" : "bg-green-500"
-        } absolute w-7 h-7 flex justify-center items-center top-2 right-2  rounded-full text-white`}
+          isInCart ? "bg-red-400" : "bg-green-400"
+        } absolute p-4 top-0 right-0  text-black`}
         onClick={() => clickHandler(id)}
       >
         {isInCart ? <HiMinus /> : <HiPlus />}

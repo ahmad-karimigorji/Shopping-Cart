@@ -34,14 +34,20 @@ const reducer = (state, action) => {
       );
       return { ...state, products: filtered };
     case SORT_PRICE:
-      const sortedProducts = [...state.products].sort(
-        (a, b) => a.price - b.price
-      );
+      let sortedProducts = [];
+      if (payLoad === "") {
+        return state;
+      }else if (payLoad === "highest") {
+        sortedProducts = [...state.products].sort((a, b) => b.price - a.price);
+      } else {
+        sortedProducts = [...state.products].sort((a, b) => a.price - b.price);
+      }
       return { ...state, products: sortedProducts };
     case SELECT_TYPE:
       const filteredTypeProducts = state.products.filter(
-        (product) => product.type.toLowerCase() === payLoad.toLowerCase()
+        (product) => product.type.toLowerCase().includes(payLoad.toLowerCase())
       );
+      console.log(filteredTypeProducts);
       return { ...state, products: filteredTypeProducts };
 
     default:

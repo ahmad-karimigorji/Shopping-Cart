@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <div className="px-2">
       <Filter />
-      <div className="flex flex-wrap justify-evenly gap-x-2 gap-y-3 mt-4">
+      <div className="flex flex-wrap justify-evenly gap-x-2 gap-y-6 mt-4">
         {products.map((product) => (
           <Product key={product.id} product={product} />
         ))}

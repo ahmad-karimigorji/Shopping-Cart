@@ -21,23 +21,26 @@ const sortOptions = [
   },
 ];
 let types = [];
-let typesSelectOptions = [
-  {
-    value: "",
-    label: "ALL",
-  },
-];
+// let typesSelectOptions = [];
 
 const Filter = () => {
   const [sortSelectValue, setSortSelectValue] = useState("");
   const [typeSelectValue, setTypeSelectValue] = useState("");
   const [searchInputValue, setSearchInputValue] = useState("");
-
+  const [typesSelectOptions, setTypesSelectOptions] = useState(null);
+  
   useEffect(() => {
     typesSelectOptionsHandler();
+    // console.log(typesSelectOptions);
   }, []);
 
   const typesSelectOptionsHandler = () => {
+    let options = [
+      {
+        value: "",
+        label: "ALL",
+      },
+    ];
     shopData.forEach((product) => {
       types.push(product.type.toLowerCase());
     });
@@ -48,8 +51,9 @@ const Filter = () => {
         arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
       }
 
-      typesSelectOptions.push({ value: item, label: arr.join(" ") });
+      options.push({ value: item, label: arr.join(" ") });
     });
+    setTypesSelectOptions(options)
   };
 
   const {
@@ -66,15 +70,15 @@ const Filter = () => {
     setSearchInputValue(value);
   };
   const sortSelectHndler = (e) => {
-    console.log(e);
     const value = e.value;
     searchProductsHandler(searchInputValue);
     sortPriceProductsHandler(value);
     selectTypeProductsHandler(typeSelectValue);
     setSortSelectValue(value);
   };
-
+  
   const typeSelectHndler = (e) => {
+    console.log(e);
     const value = e.value;
     searchProductsHandler(searchInputValue);
     sortPriceProductsHandler(sortSelectValue);

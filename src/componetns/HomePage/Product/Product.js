@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HiMinus, HiPlus } from "react-icons/hi";
 import {
   ProductContext,
@@ -14,9 +14,14 @@ const Product = ({ product }) => {
     ProductContextDispatch
   );
 
+  useEffect(() => {
+    const selected = cart.some((item) => item.id === id);
+    selected && setIsInCart(true);
+  }, [])
+
   const clickHandler = (id) => {
     console.log(cart);
-    const selected = cart.some((product) => product.id === id);
+    const selected = cart.some((item) => item.id === id);
     if (selected) {
       removeFromCartHandler(id);
       setIsInCart(false);

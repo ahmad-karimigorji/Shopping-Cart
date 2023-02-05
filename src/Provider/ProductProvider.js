@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { addToCart, searchProducts, sortByPrice, removeFromCart, selectType } from "./productActions";
+import { addToCart, searchProducts, sortByPrice, removeFromCart, selectType, totalPriceOfCart } from "./productActions";
 import reducer, { initialState } from "./productReducer";
 
 export const ProductContext = createContext();
@@ -18,6 +18,10 @@ const ProductProvider = ({ children }) => {
     dispatch(removeFromCart(id))
   }
 
+    const totalPriceOfCartHandler = () => {
+    dispatch(totalPriceOfCart())
+  }
+
   const searchProductsHandler = (value) => {
     dispatch(searchProducts(value))
   }
@@ -33,6 +37,7 @@ const ProductProvider = ({ children }) => {
   const dispatchHandler = {
     addToCartHandler: (id) => addToCartHandler(id),
     removeFromCartHandler: (id) => removeFromCartHandler(id),
+    totalPriceOfCartHandler: () => totalPriceOfCartHandler(),
     searchProductsHandler: (value) => searchProductsHandler(value),
     sortPriceProductsHandler: (value) => sortPriceProductsHandler(value),
     selectTypeProductsHandler: (value) => selectTypeProductsHandler(value),

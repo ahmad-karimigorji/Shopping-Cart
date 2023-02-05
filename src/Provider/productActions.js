@@ -4,6 +4,7 @@ import {
   SEARCH_PRODUCTS,
   SELECT_TYPE,
   SORT_PRICE,
+  TOTAL_PRICE_OF_CART,
 } from "./productTypes";
 
 export function addToCart(product) {
@@ -16,6 +17,11 @@ export function removeFromCart(id) {
   return {
     type: REMOVE_FROM_CART,
     payLoad: id,
+  };
+}
+export function totalPriceOfCart() {
+  return {
+    type: TOTAL_PRICE_OF_CART,
   };
 }
 export function searchProducts(value) {

@@ -10,7 +10,7 @@ const Product = ({ product }) => {
   const { cart } = useContext(ProductContext);
 
   const [isInCart, setIsInCart] = useState(false);
-  const { addToCartHandler, removeFromCartHandler } = useContext(
+  const { addToCartHandler, removeFromCartHandler, totalPriceOfCartHandler } = useContext(
     ProductContextDispatch
   );
 
@@ -24,9 +24,11 @@ const Product = ({ product }) => {
     const selected = cart.some((item) => item.id === id);
     if (selected) {
       removeFromCartHandler(id);
+      totalPriceOfCartHandler()
       setIsInCart(false);
     } else {
       addToCartHandler({...product, quantity: 1});
+      totalPriceOfCartHandler()
       setIsInCart(true);
     }
 

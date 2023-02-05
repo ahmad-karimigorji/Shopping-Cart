@@ -3,10 +3,14 @@ import { HiTrash } from "react-icons/hi";
 import { ProductContextDispatch } from "../../../Provider/ProductProvider";
 
 const CartProduct = ({ product }) => {
-  console.log({ product });
   const { name, price, type, url } = product;
 
-  const {removeFromCartHandler} = useContext(ProductContextDispatch)
+  const {removeFromCartHandler, totalPriceOfCartHandler} = useContext(ProductContextDispatch)
+
+  const clickHandler = () => {
+    removeFromCartHandler(product.id)
+    totalPriceOfCartHandler()
+  }
 
   return (
     <div className="border-b border-b-slate-300 mb-5">
@@ -23,7 +27,7 @@ const CartProduct = ({ product }) => {
             <span>
               Price : <b>{price} $</b>
             </span>
-            <button className="ml-4 text-red-500" onClick={() => removeFromCartHandler(product.id)}>
+            <button className="ml-4 text-red-500 p-1" onClick={clickHandler}>
               <HiTrash />
             </button>
           </div>

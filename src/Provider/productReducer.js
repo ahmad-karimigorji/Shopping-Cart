@@ -5,11 +5,13 @@ import {
   SEARCH_PRODUCTS,
   SORT_PRICE,
   SELECT_TYPE,
+  TOTAL_PRICE_OF_CART,
 } from "./productTypes";
 
 export const initialState = {
   products: shopData,
   cart: [],
+  totalPrice: 0,
 };
 
 const reducer = (state, action) => {
@@ -25,6 +27,9 @@ const reducer = (state, action) => {
         (product) => product.id !== payLoad
       );
       return { ...state, cart: filteredProducts };
+    case TOTAL_PRICE_OF_CART:
+      const total = state.cart.reduce((accu, curr) => accu + curr.price, 0);
+      return { ...state, totalPrice: total };
     case SEARCH_PRODUCTS:
       const filtered = shopData.filter((product) =>
         [product.name, product.brand]
@@ -37,15 +42,15 @@ const reducer = (state, action) => {
       let sortedProducts = [];
       if (payLoad === "") {
         return state;
-      }else if (payLoad === "highest") {
+      } else if (payLoad === "highest") {
         sortedProducts = [...state.products].sort((a, b) => b.price - a.price);
       } else {
         sortedProducts = [...state.products].sort((a, b) => a.price - b.price);
       }
       return { ...state, products: sortedProducts };
     case SELECT_TYPE:
-      const filteredTypeProducts = state.products.filter(
-        (product) => product.type.toLowerCase().includes(payLoad.toLowerCase())
+      const filteredTypeProducts = state.products.filter((product) =>
+        product.type.toLowerCase().includes(payLoad.toLowerCase())
       );
       console.log(filteredTypeProducts);
       return { ...state, products: filteredTypeProducts };

@@ -5,12 +5,14 @@ import { ProductContextDispatch } from "../../../Provider/ProductProvider";
 const CartProduct = ({ product }) => {
   const { name, price, type, url } = product;
 
-  const {removeFromCartHandler, totalPriceOfCartHandler} = useContext(ProductContextDispatch)
+  const { removeFromCartHandler, totalPriceOfCartHandler } = useContext(
+    ProductContextDispatch
+  );
 
   const clickHandler = () => {
-    removeFromCartHandler(product.id)
-    totalPriceOfCartHandler()
-  }
+    removeFromCartHandler(product.id);
+    totalPriceOfCartHandler();
+  };
 
   return (
     <div className="border-b border-b-slate-300 mb-5">

@@ -4,7 +4,6 @@ import CartProduct from "./CartProduct/CartProduct";
 
 const CartPage = () => {
   const { cart, totalPrice } = useContext(ProductContext);
-  console.log(cart);
   return (
     <div>
       <h2
@@ -16,9 +15,11 @@ const CartPage = () => {
           : `Your Total Price Of Cart is : ${totalPrice} $`}
       </h2>
       {cart && cart.length !== 0 && (
-        <div className="border-t-2 border-t-slate-800 pt-6 sm:px-5 md:px-10">{
-          cart.map((product) => <CartProduct key={product.id} product={product} />)
-        }</div>
+        <div className="border-t-2 border-t-slate-800 pt-6 sm:px-5 md:px-10">
+          {cart.map((product) => (
+            <CartProduct key={product.id} product={product} />
+          ))}
+        </div>
       )}
     </div>
   );

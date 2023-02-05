@@ -10,28 +10,25 @@ const Product = ({ product }) => {
   const { cart } = useContext(ProductContext);
 
   const [isInCart, setIsInCart] = useState(false);
-  const { addToCartHandler, removeFromCartHandler, totalPriceOfCartHandler } = useContext(
-    ProductContextDispatch
-  );
+  const { addToCartHandler, removeFromCartHandler, totalPriceOfCartHandler } =
+    useContext(ProductContextDispatch);
 
   useEffect(() => {
     const selected = cart.some((item) => item.id === id);
     selected && setIsInCart(true);
-  }, [])
+  }, []);
 
   const clickHandler = (id) => {
-    console.log(cart);
     const selected = cart.some((item) => item.id === id);
     if (selected) {
       removeFromCartHandler(id);
-      totalPriceOfCartHandler()
+      totalPriceOfCartHandler();
       setIsInCart(false);
     } else {
-      addToCartHandler({...product, quantity: 1});
-      totalPriceOfCartHandler()
+      addToCartHandler({ ...product, quantity: 1 });
+      totalPriceOfCartHandler();
       setIsInCart(true);
     }
-
   };
   return (
     <div className="relative w-72 h-[360px] rounded-xl overflow-hidden">

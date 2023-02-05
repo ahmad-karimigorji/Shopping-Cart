@@ -1,9 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Select from "react-select";
-import {
-  ProductContext,
-  ProductContextDispatch,
-} from "../../Provider/ProductProvider";
+import { ProductContextDispatch } from "../../Provider/ProductProvider";
 import { shopData } from "../../shopData/shopData";
 
 const sortOptions = [
@@ -20,18 +17,15 @@ const sortOptions = [
     label: "Lowest Price",
   },
 ];
-let types = [];
-// let typesSelectOptions = [];
 
 const Filter = () => {
   const [sortSelectValue, setSortSelectValue] = useState("");
   const [typeSelectValue, setTypeSelectValue] = useState("");
   const [searchInputValue, setSearchInputValue] = useState("");
   const [typesSelectOptions, setTypesSelectOptions] = useState(null);
-  
+
   useEffect(() => {
     typesSelectOptionsHandler();
-    // console.log(typesSelectOptions);
   }, []);
 
   const typesSelectOptionsHandler = () => {
@@ -41,6 +35,7 @@ const Filter = () => {
         label: "ALL",
       },
     ];
+    let types = [];
     shopData.forEach((product) => {
       types.push(product.type.toLowerCase());
     });
@@ -53,7 +48,7 @@ const Filter = () => {
 
       options.push({ value: item, label: arr.join(" ") });
     });
-    setTypesSelectOptions(options)
+    setTypesSelectOptions(options);
   };
 
   const {
@@ -76,9 +71,8 @@ const Filter = () => {
     selectTypeProductsHandler(typeSelectValue);
     setSortSelectValue(value);
   };
-  
+
   const typeSelectHndler = (e) => {
-    console.log(e);
     const value = e.value;
     searchProductsHandler(searchInputValue);
     sortPriceProductsHandler(sortSelectValue);
@@ -103,7 +97,7 @@ const Filter = () => {
         />
       </div>
       <input
-        className="w-full py-[6px] px-[10px] rounded-[4px] border border-[#ccc] placeholder-gray-500"
+        className="w-full py-[6px] px-[10px] rounded-[4px] border border-[#ccc] placeholder-gray-500 outline-[#2684ff]"
         type="text"
         value={searchInputValue}
         placeholder="Search..."

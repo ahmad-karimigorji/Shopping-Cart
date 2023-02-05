@@ -5,7 +5,6 @@ import Product from "./Product/Product";
 
 const HomePage = () => {
   const { products } = useContext(ProductContext);
-  console.log('products', products);
 
   return (
     <div className="px-2">

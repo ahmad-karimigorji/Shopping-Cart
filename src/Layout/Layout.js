@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
       <header className="sticky top-[-56px] z-10">
         <h2 className="text-center py-3 font-bold text-2xl">Shopping Cart</h2>
         <div className=" text-white flex justify-center bg-gray-800">
-          <nav className="w-[300px] md:w-[700px] font-bold">
+          <nav className="w-[300px] sm:w-[620px] lg:w-[1000px] font-bold">
             <NavLink
               className={(linkData) =>
                 linkData.isActive

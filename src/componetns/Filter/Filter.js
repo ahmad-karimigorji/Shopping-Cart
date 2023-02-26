@@ -84,12 +84,14 @@ const Filter = () => {
     <div className="space-y-2 md:w-[600px] md:mx-auto">
       <div className="space-y-2 sm:flex sm:space-x-2 sm:space-y-0">
         <Select
+          placeholder="Sort by Price"
           className="w-full sm:w-1/2"
           defaultValue={sortSelectValue}
           options={sortOptions}
           onChange={sortSelectHndler}
         />
         <Select
+          placeholder="Select Category"
           className="w-full sm:w-1/2"
           defaultValue={typeSelectValue}
           onChange={typeSelectHndler}

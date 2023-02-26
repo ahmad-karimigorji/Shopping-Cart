@@ -5,7 +5,6 @@ import {
   sortByPrice,
   removeFromCart,
   selectType,
-  totalPriceOfCart,
 } from "./productActions";
 import reducer, { initialState } from "./productReducer";
 
@@ -19,13 +18,10 @@ const ProductProvider = ({ children }) => {
     dispatch(addToCart(product));
   };
 
-  const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id));
+  const removeFromCartHandler = (product) => {
+    dispatch(removeFromCart(product));
   };
 
-  const totalPriceOfCartHandler = () => {
-    dispatch(totalPriceOfCart());
-  };
 
   const searchProductsHandler = (value) => {
     dispatch(searchProducts(value));
@@ -40,9 +36,8 @@ const ProductProvider = ({ children }) => {
   };
 
   const dispatchHandler = {
-    addToCartHandler: (id) => addToCartHandler(id),
-    removeFromCartHandler: (id) => removeFromCartHandler(id),
-    totalPriceOfCartHandler: () => totalPriceOfCartHandler(),
+    addToCartHandler: (product) => addToCartHandler(product),
+    removeFromCartHandler: (product) => removeFromCartHandler(product),
     searchProductsHandler: (value) => searchProductsHandler(value),
     sortPriceProductsHandler: (value) => sortPriceProductsHandler(value),
     selectTypeProductsHandler: (value) => selectTypeProductsHandler(value),

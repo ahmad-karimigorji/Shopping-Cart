@@ -5,7 +5,6 @@ import {
   SEARCH_PRODUCTS,
   SORT_PRICE,
   SELECT_TYPE,
-  TOTAL_PRICE_OF_CART,
 } from "./productTypes";
 
 export const initialState = {
@@ -21,15 +20,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         cart: [...state.cart, payLoad],
+        totalPrice: state.totalPrice + payLoad.price,
       };
     case REMOVE_FROM_CART:
       const filteredProducts = state.cart.filter(
-        (product) => product.id !== payLoad
+        (product) => product.id !== payLoad.id
       );
-      return { ...state, cart: filteredProducts };
-    case TOTAL_PRICE_OF_CART:
-      const total = state.cart.reduce((accu, curr) => accu + curr.price, 0);
-      return { ...state, totalPrice: total };
+      return {
+        ...state,
+        cart: filteredProducts,
+        totalPrice: state.totalPrice - payLoad.price,
+      };
     case SEARCH_PRODUCTS:
       const filtered = shopData.filter((product) =>
         [product.name, product.brand]

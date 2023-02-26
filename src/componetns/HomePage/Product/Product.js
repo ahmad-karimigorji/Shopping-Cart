@@ -10,8 +10,9 @@ const Product = ({ product }) => {
   const { cart } = useContext(ProductContext);
 
   const [isInCart, setIsInCart] = useState(false);
-  const { addToCartHandler, removeFromCartHandler, totalPriceOfCartHandler } =
-    useContext(ProductContextDispatch);
+  const { addToCartHandler, removeFromCartHandler } = useContext(
+    ProductContextDispatch
+  );
 
   useEffect(() => {
     const selected = cart.some((item) => item.id === id);
@@ -21,18 +22,16 @@ const Product = ({ product }) => {
   const clickHandler = (id) => {
     const selected = cart.some((item) => item.id === id);
     if (selected) {
-      removeFromCartHandler(id);
-      totalPriceOfCartHandler();
+      removeFromCartHandler(product);
       setIsInCart(false);
     } else {
-      addToCartHandler({ ...product, quantity: 1 });
-      totalPriceOfCartHandler();
+      addToCartHandler(product);
       setIsInCart(true);
     }
   };
   return (
     <div className="relative w-72 h-[360px] rounded-xl overflow-hidden">
-      <img src={url[0]} alt="" className="h-full object-cover" />
+      <img src={url[0]} alt={name} className="h-full object-cover" />
       <button
         className={`${
           isInCart ? "bg-red-400" : "bg-green-400"

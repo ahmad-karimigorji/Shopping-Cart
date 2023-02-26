@@ -1,6 +1,6 @@
 {
   "name": "shopping-cart",
-  "homePage": "https://ahmad-karimigorji.github.io/Shopping-Cart",
+  "homepage": "https://ahmad-karimigorji.github.io/Shopping-Cart",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
